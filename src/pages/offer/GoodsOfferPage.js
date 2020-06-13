@@ -3,34 +3,55 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 
+import GoodsOption from 'components/offer/goods/GoodsOption';
+
 class GoodsOfferPage extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          value:'select',
-          anchorEl:''
-      };
+    super(props);
+    this.state = {
+      value:'select',
+      anchorEl:'',
+
+      colorOptionList: [],
+      colorOptionChecked: false,
+
+      attributeOptionList: [],
+      attributeOptionChecked: false,
+    };
   }
 
   onChange(e) {
-      this.setState({
-          value:e.target.value
-      })
+    this.setState({
+        value:e.target.value
+    })
   }
   state = {
       name:'test'
   }
-  //옵션 체크박스 클릭 시 옵션 세부사항 입력하는 칸 생성
-  ckboxchecked = (e) => {
-      this.setState({
-          name:e.target.value
-          //visibility:'show'
-      })
-    }
-  //  handleInputChange(e) {
-  //      const target = e.target;
-  //      const hi = target.style.visibility === 'hidden' ? 'visible': 'hidden';
-  //  }
+  
+  optionCheckedChange(stateName, checked) {
+    this.setState({
+      [stateName]: checked,
+    });
+  }
+
+  addOptionList(stateName, option) {
+    this.setState({
+      [stateName]: this.state[stateName].concat(option),
+    });
+  }
+
+  changeOption(stateName, index, option) {
+    this.setState({
+      [stateName]: this.state[stateName].map((item, i) => {
+        if (i === index) {
+          return { ...option };
+        } else {
+          return item;
+        }
+      }),
+    });
+  }
 
   render() {
     return (
@@ -44,25 +65,28 @@ class GoodsOfferPage extends Component {
           <option value="3">장식품</option>
         </select><br/><br/>
         <label>상품 옵션 </label>
-        <label><Checkbox 
-          color="default" 
-          inputProps={{'aria-label' : 'checkbox with default color'}}
-          label="색상"
-          size="small"
-        />색상</label>
-
-        <label><Checkbox 
-            color="default" 
-            inputProps={{'aria-label' : 'checkbox with default color'}}
-            label="종류"
-            size="small"
-        />종류</label>
-        <br/><br/>
+        
+        <GoodsOption
+          optionTitle="색상"
+          optionList={this.state.colorOptionList}
+          checked={this.state.colorOptionChecked}
+          handleCheckedChange={(checked) => { this.optionCheckedChange('colorOptionChecked', checked)}}
+          addOptionList={(option) => { this.addOptionList('colorOptionList', option) }}
+          changeOption={(index, option) => { this.changeOption('colorOptionList', index, option) }}
+        />
+        <GoodsOption
+          optionTitle="종류"
+          optionList={this.state.attributeOptionList}
+          checked={this.state.attributeOptionChecked}
+          handleCheckedChange={(checked) => { this.optionCheckedChange('attributeOptionChecked', checked)}}
+          addOptionList={(option) => { this.addOptionList('attributeOptionList', option) }}
+          changeOption={(index, option) => { this.changeOption('attributeOptionList', index, option) }}
+        />
 
         <TextField id="standard-basic" label="판매가격"/><br/><br/>
         <TextField id="standard-basic" label="전체 재고 수량"/><br/><br/>
         <label>대표이미지</label><input type="file"/><br/><br/>
-        <label>이미지 추가</label><span class="material-icons">add</span><br/><br/>
+        <label>이미지 추가</label><span className="material-icons">add</span><br/><br/>
         <input type="file" hidden className="addfile"></input>
         <TextField id="standard-read-only-input" label="Read only" defaultValue="배송지주소"/><br/><br/>
         <TextField

@@ -13,7 +13,7 @@ import SellerJoinPage from './pages/seller/SellerJoinPage';
 
 function AppRouter() {
   return (
-    <div style={{'margin-left': '250px'}}>
+    <div style={{ marginLeft: '250px' }}>
       <Switch>
         <Route exact path="/">
           <HomePage></HomePage>

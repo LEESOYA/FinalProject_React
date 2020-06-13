@@ -1,18 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
-import GoodsOffer from './GoodsOffer';
-import ExhibitOffer from './ExhibitOffer';
-import Join from './Join';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <GoodsOffer/>
-    {/* <ExhibitOffer/> */}
-    {/* <Join/> */}
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

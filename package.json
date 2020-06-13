@@ -38,5 +38,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:9000"
+  "proxy": "http://localhost:9000",
+  "main": "index.js",
+  "repository": "https://github.com/LEESOYA/FinalProject_React.git",
+  "author": "leesoya <soyalee91@gmail.com>",
+  "license": "MIT"
 }

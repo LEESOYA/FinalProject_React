@@ -23,6 +23,7 @@ const menuList = [
     path: '/offer/exhibit/register',
     text: '전시회등록',
   },
+  
 ];
 
 function App() {

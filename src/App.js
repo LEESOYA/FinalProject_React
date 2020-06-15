@@ -16,14 +16,25 @@ const menuList = [
     text: '메인',
   },
   {
-    path: '/offer/goods/register',
+    path: '/offer/product/register',
     text: '상품등록',
   },
   {
-    path: '/offer/exhibit/register',
-    text: '전시회등록',
+    path: '/offer/product/modify',
+    text: '상품수정',
   },
-  
+  {
+    path: '/offer/product/info',
+    text: '상품별정보',
+  },
+  {
+    path: '/order/product/confirm',
+    text: '주문확인',
+  },
+  {
+    path: '/member/management',
+    text: '회원관리',
+  },
 ];
 
 function App() {

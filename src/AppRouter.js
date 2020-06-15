@@ -6,10 +6,14 @@ import {
 
 import HomePage from './pages/home/HomePage';
 
-import GoodsOfferPage from './pages/offer/GoodsOfferPage';
-import ExhibitOfferPage from './pages/offer/ExhibitOfferPage';
+import ProductOfferPage from './pages/offer/ProductOfferPage';
+import ProductModifyPage from './pages/offer/ProductModifyPage';
+import ProductInfoPage from './pages/offer/ProductInfoPage';
 
-import SellerJoinPage from './pages/seller/SellerJoinPage';
+import ProductOrderConfirmPage from './pages/order/ProductOrderConfirmPage';
+
+import MemberManagePage from './pages/member/MemberManagePage';
+
 
 function AppRouter() {
   return (
@@ -18,15 +22,25 @@ function AppRouter() {
         <Route exact path="/">
           <HomePage></HomePage>
         </Route>
-        <Route exact path="/offer/goods/register">
-          <GoodsOfferPage></GoodsOfferPage>
+        <Route exact path="/offer/product/register">
+          <ProductOfferPage></ProductOfferPage>
         </Route>
-        <Route exact path="/offer/exhibit/register">
-          <ExhibitOfferPage></ExhibitOfferPage>
+        <Route exact path="/offer/product/modify">
+          <ProductModifyPage></ProductModifyPage>
         </Route>
-        <Route exact path="/seller/join">
-          <SellerJoinPage></SellerJoinPage>
+        <Route exact path="/offer/product/register">
+          <ProductOfferPage></ProductOfferPage>
         </Route>
+        <Route exact path="/offer/product/info">
+          <ProductInfoPage></ProductInfoPage>
+        </Route>
+        <Route exact path="/order/product/confirm">
+          <ProductOrderConfirmPage></ProductOrderConfirmPage>
+        </Route>
+        <Route exact path="/member/management">
+          <MemberManagePage></MemberManagePage>
+        </Route>
+        
       </Switch>
     </div>
   );

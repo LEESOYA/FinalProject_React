@@ -3,23 +3,24 @@ import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
+import Button from '@material-ui/core/Button';
 
 const kindOfCake = [
   {
     value: "bread",
-    label: "일반 빵"
+    label: "빵 케이크"
   },
   {
     value: "rice",
-    label: "앙금"
+    label: "앙금 케이크"
   },
   {
     value: "macaron",
-    label: "마카롱"
+    label: "마카롱 케이크"
   },
   {
     value: "number",
-    label: "숫자"
+    label: "숫자 케이크"
   }
 ];
 
@@ -29,7 +30,8 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: "25ch"
     }
-  }
+  },
+  
 }));
 
 function ProductOfferPage(){
@@ -41,20 +43,21 @@ function ProductOfferPage(){
   }
   return (
     <div className={classes.root} noValidate autoComplete="off">
+      <div>상품등록페이지</div>
       <div>
         <TextField 
           id="standard-basic" 
           label="상품명"/>
       </div>
+      <br></br>
       <div>
-        <TextField 
-          id="standard-basic" 
-          label="이미지" />
+        <input type="file"></input>
       </div>
+      <br></br>
       <div>
         <TextField
           select
-          label="시트 선택"
+          label="케이크 종류"
           value={kind}
           onChange={handleChange}
           variant="outlined"
@@ -72,8 +75,28 @@ function ProductOfferPage(){
           id="standard-basic" 
           label="가격"/>
       </div>
+      <div>
+        <TextField
+          id="outlined-textarea"
+          label="상세설명"
+          multiline
+          rows={4}
+          defaultValue="사이즈 : 2호 (지름18cm)
+          유통기한 : 제조일로부터2일(냉장보관필수)
+          구성 : 바닐라케이크
+          제조&판매원 :	케익팩토리"
+          variant="outlined"
+        />
+      </div>
+      <div style={{marginLeft:'35px'}}>
+        <Button variant="outlined" color="primary">
+          상품 등록
+        </Button>
+        <Button variant="outlined" color="secondary">
+          취소
+        </Button>
+      </div>
     </div>
-  
   );
 }
 

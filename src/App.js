@@ -35,6 +35,14 @@ const menuList = [
     path: '/member/management',
     text: '회원관리',
   },
+  {
+    path: '/member/orderlist',
+    text: '주문목록(구매자꺼)',
+  },
+  {
+    path: '/board/qanda',
+    text: 'Q&A게시판',
+  },
 ];
 
 function App() {

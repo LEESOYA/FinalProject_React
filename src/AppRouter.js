@@ -13,6 +13,9 @@ import ProductInfoPage from './pages/offer/ProductInfoPage';
 import ProductOrderConfirmPage from './pages/order/ProductOrderConfirmPage';
 
 import MemberManagePage from './pages/member/MemberManagePage';
+import MemberOrderListPage from './pages/member/MemberOrderListPage';
+
+import QandABoardPage from './pages/board/QandABoardPage';
 
 
 function AppRouter() {
@@ -39,6 +42,12 @@ function AppRouter() {
         </Route>
         <Route exact path="/member/management">
           <MemberManagePage></MemberManagePage>
+        </Route>
+        <Route exact path="/member/orderlist">
+          <MemberOrderListPage></MemberOrderListPage>
+        </Route>
+        <Route exact path="/board/qanda">
+          <QandABoardPage></QandABoardPage>
         </Route>
         
       </Switch>

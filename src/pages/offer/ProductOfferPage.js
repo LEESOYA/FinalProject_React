@@ -34,7 +34,47 @@ const useStyles = makeStyles(theme => ({
   
 }));
 
-function ProductOfferPage(){
+//데이터 업로드
+
+
+//  //이미지 업로드 이벤트
+//  onImageUpload=(e)=>{
+//   const uploadFile = e.target.files[0];
+//   const companyImage = e.target.files[0].name;
+//   this.setState({
+//       companyImage
+//   })
+//   //서버로 업로드
+//   const companyFile = new FormData();
+//   companyFile.append('uploadFile',uploadFile);
+//   axios({
+//       method:'post',
+//       url:'http://localhost:8080/acorn/seller/companyFile',
+//       data:companyFile,
+//       headers:{'Content-Type':'multipart/form-data'}
+//   }).then(res=>{
+//       console.log("이미지명:"+res.data);
+//   }).catch(err=>{
+//       console.log("업로드 오류:"+err);
+//   })
+// }
+// //onSubmit 함수
+// onSubmit=(e)=>{
+//   e.preventDefault();
+//   let url="http://localhost:8080/acorn/seller/add";
+//   console.log({...this.state});
+//   let uploadData=this.state;
+//   console.log(uploadData);
+  
+//   axios.post(url,uploadData).then(res=>{
+//       this.setState({
+//       })
+//   }).catch(err=>{
+//       console.log("데이터 추가 오류:"+err);
+//   })
+// }
+
+function ProductOfferPage(props){
   const classes = useStyles();
   const [kind, setKind] = React.useState("bread");
 
@@ -89,7 +129,7 @@ function ProductOfferPage(){
         />
       </div>
       <div style={{marginLeft:'35px'}}>
-        <Button variant="outlined" color="primary">
+        <Button variant="outlined" color="primary" onClick = {() => {props.addOffer()}}>
           상품 등록
         </Button>
         <Button variant="outlined" color="secondary">

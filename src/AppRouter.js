@@ -16,6 +16,9 @@ import MemberManagePage from './pages/member/MemberManagePage';
 import MemberOrderListPage from './pages/member/MemberOrderListPage';
 
 import QandABoardPage from './pages/board/QandABoardPage';
+import ReviewBoardPage from './pages/board/ReviewBoardPage';
+
+import WholeProductPage from './pages/board/WholeProductPage';
 
 
 function AppRouter() {
@@ -49,6 +52,13 @@ function AppRouter() {
         <Route exact path="/board/qanda">
           <QandABoardPage></QandABoardPage>
         </Route>
+        <Route exact path="/board/review">
+          <ReviewBoardPage></ReviewBoardPage>
+        </Route>
+        <Route exact path="/board/whole">
+          <WholeProductPage></WholeProductPage>
+        </Route>
+        
         
       </Switch>
     </div>

@@ -43,6 +43,15 @@ const menuList = [
     path: '/board/qanda',
     text: 'Q&A게시판',
   },
+  {
+    path: '/board/review',
+    text: '고객리뷰',
+  },
+  {
+    path: '/board/whole',
+    text: '주제순으로보기',
+  },
+  
 ];
 
 function App() {

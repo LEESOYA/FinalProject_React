@@ -1,7 +1,7 @@
 import React from 'react';
 //import { makeStyles } from '@material-ui/core';
 
-import Rating from "@material-ui/lab/Rating";
+//import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import Typography from "@material-ui/core/Typography";
 
@@ -13,6 +13,7 @@ import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
+import Rating from "@material-ui/lab/Rating";
 
 // const useStyles = makeStyles(theme => ({
 //   root: {
@@ -25,7 +26,7 @@ import Button from '@material-ui/core/Button';
 // }));
 
 function ReviewBoardPage() {
-
+  const [value, setValue] = React.useState(2);
   return (
     <div>
       <div style={{margin:"80px 0 0 80px"}}><h1>상품리뷰</h1></div>
@@ -80,9 +81,46 @@ function ReviewBoardPage() {
           <Button>스토어 PICK</Button>
         </ButtonGroup>
       </div>
+      <br></br>
       <div>
-        
+        <Box component="fieldset" mb={3} borderColor="transparent" style={{margin:'0'}}>
+          <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          />{" "}
+          {value}
+        </Box>
       </div>
+      <div style={{marginLeft:'10px'}}>
+        <div>사용자 아이디 | 선택 : 마카롱 케이크</div>
+        <div>
+          <Typography>맛나게 먹었습니다. 디자인이 너무 귀여워요</Typography>
+        </div>
+      </div>
+      <hr></hr>
+      <div>
+        <Box component="fieldset" mb={3} borderColor="transparent" style={{margin:'0'}}>
+          <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          />{" "}
+          {value}
+        </Box>
+      </div>
+      <div style={{marginLeft:'10px'}}>
+        <div>사용자 아이디 | 선택 : 마카롱 케이크</div>
+        <div>
+          <Typography>맛나게 먹었습니다. 디자인이 너무 귀여워요</Typography>
+        </div>
+      </div>
+      <hr></hr>
+      
 
     </div>
   );

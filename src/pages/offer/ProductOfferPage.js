@@ -1,28 +1,25 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from '@material-ui/core/Button';
 
+//select 값 미리 정의
 const kindOfCake = [
   {
-    value: "bread",
-    label: "빵 케이크"
+    key:1, value:"일반케이크"
   },
   {
-    value: "rice",
-    label: "앙금 케이크"
+    key:2, value: "앙금 케이크"
   },
   {
-    value: "macaron",
-    label: "마카롱 케이크"
+    key:3, value: "마카롱 케이크"
   },
   {
-    value: "number",
-    label: "숫자 케이크"
+    key:4, value: "숫자 케이크"
   }
 ];
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,64 +27,43 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: "25ch"
     }
-  },
-  
+  }
 }));
-
-//데이터 업로드
-
-
-//  //이미지 업로드 이벤트
-//  onImageUpload=(e)=>{
-//   const uploadFile = e.target.files[0];
-//   const companyImage = e.target.files[0].name;
-//   this.setState({
-//       companyImage
-//   })
-//   //서버로 업로드
-//   const companyFile = new FormData();
-//   companyFile.append('uploadFile',uploadFile);
-//   axios({
-//       method:'post',
-//       url:'http://localhost:8080/acorn/seller/companyFile',
-//       data:companyFile,
-//       headers:{'Content-Type':'multipart/form-data'}
-//   }).then(res=>{
-//       console.log("이미지명:"+res.data);
-//   }).catch(err=>{
-//       console.log("업로드 오류:"+err);
-//   })
-// }
-// //onSubmit 함수
-// onSubmit=(e)=>{
-//   e.preventDefault();
-//   let url="http://localhost:8080/acorn/seller/add";
-//   console.log({...this.state});
-//   let uploadData=this.state;
-//   console.log(uploadData);
-  
-//   axios.post(url,uploadData).then(res=>{
-//       this.setState({
-//       })
-//   }).catch(err=>{
-//       console.log("데이터 추가 오류:"+err);
-//   })
-// }
-
-function ProductOfferPage(props){
+ 
+function ProductOfferPage(){
   const classes = useStyles();
-  const [kind, setKind] = React.useState("bread");
+  
 
-  const handleChange = (e) => {
+  //이벤트
+  const [cakeName, setCakeName] = useState(""); 
+  const [kind, setKind] = React.useState(1);
+  const [cakePrice, setCakePrice] = useState(0);
+  const [cakeText, setCakeText] = useState("");
+
+  const nameChangeHandler = (e) => {
+    setCakeName(e.target.value);
+  }
+  const optionChangeHandler = (e) => {
     setKind(e.target.value);
   }
+  const priceChangeHandler = (e) => {
+    setCakePrice(e.target.value);
+  }
+  const textChangeHandler = (e) => {
+    setCakeText(e.target.value);
+  }
+  
   return (
     <div className={classes.root} noValidate autoComplete="off">
-      <div>상품등록페이지</div>
+			<label>상품등록페이지</label>
+      <form>
       <div>
         <TextField 
           id="standard-basic" 
-          label="상품명"/>
+          label="상품명"
+          onChange={nameChangeHandler}
+          value={cakeName}
+        />
       </div>
       <br></br>
       <div>
@@ -98,14 +74,14 @@ function ProductOfferPage(props){
         <TextField
           select
           label="케이크 종류"
-          value={kind}
-          onChange={handleChange}
           variant="outlined"
           size="small"
+          value={kind}
+          onChange={optionChangeHandler}
         >
           {kindOfCake.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+            <MenuItem key={option.key} value={option.key}>
+              {option.value}
             </MenuItem>
           ))}
         </TextField>
@@ -113,31 +89,34 @@ function ProductOfferPage(props){
       <div>
         <TextField 
           id="standard-basic" 
-          label="가격"/>
+          label="가격"
+          type="number"
+          value={cakePrice}
+          onChange={priceChangeHandler}
+        />
       </div>
       <div>
         <TextField
-          id="outlined-textarea"
+          id="outlined-multiline-static"
           label="상세설명"
           multiline
           rows={4}
-          defaultValue="사이즈 : 2호 (지름18cm)
-          유통기한 : 제조일로부터2일(냉장보관필수)
-          구성 : 바닐라케이크
-          제조&판매원 :	케익팩토리"
+          value={cakeText}
+          onChange={textChangeHandler}
           variant="outlined"
         />
       </div>
       <div style={{marginLeft:'35px'}}>
-        <Button variant="outlined" color="primary" onClick = {() => {props.addOffer()}}>
+        <Button variant="outlined" color="primary">
           상품 등록
         </Button>
         <Button variant="outlined" color="secondary">
           취소
         </Button>
       </div>
-    </div>
+    </form>
+      </div>
   );
 }
 
-export default ProductOfferPage;
+export default ProductOfferPage;  

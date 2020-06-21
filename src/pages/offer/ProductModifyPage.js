@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const kindOfCake = [
   {
@@ -29,76 +31,136 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: "25ch"
     }
-  }
+  },
 }));
 
-function ProductModifyPage(){
+function ProductOfferPage(props){
   const classes = useStyles();
-  const [kind, setKind] = React.useState("bread");
+  
+  //이벤트
+  const [cakeName, setCakeName] = useState(""); 
+  const [cakePrice, setCakePrice] = useState(0);
+  const [cakeText, setCakeText] = useState("");
+  const [kind, setKind] = useState("");
+  const [cakeImgSrc, setCakeImgSrc] = useState('');
+  const [cakeImg, setCakeImg] = useState(null);
 
-  const handleChange = (e) => {
+  // const handleChange = (e) => {
+  //   setKind(e.target.value);
+  // }
+  const nameChangeHandler = (e) => {
+    setCakeName(e.target.value);
+  }
+  const optionChangeHandler = (e) => {
     setKind(e.target.value);
   }
+  const priceChangeHandler = (e) => {
+    setCakePrice(e.target.value);
+  }
+  const textChangeHandler = (e) => {
+    setCakeText(e.target.value);
+  }
+
+  const onImageChange = () => {
+
+  }
+
+  
+  const productAddUrl = "http://localhost:9003/acorn/product/getData?product_id="+20;
+
+  const onSubmit = () => {
+    axios(productAddUrl, {
+      method: 'get',
+      data: {product_name:cakeName, 
+        product_text: cakeText,
+        product_price: cakePrice,
+        product_category: kind
+      }
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+  
+  
+
+
   return (
-    <div className={classes.root} noValidate autoComplete="off">
-			<label>상품수정페이지</label>
-      <div>
-        <TextField 
-          id="standard-basic" 
-          label="상품명"/>
+    <form onSubmit={onSubmit}>
+      <div className={classes.root} noValidate autoComplete="off">
+        <div>상품 수정 페이지</div>
+        <div>
+          <TextField 
+            label="상품명"
+            name="product_name"
+            tabIndex="product_name"
+            value={cakeName}
+            onChange={nameChangeHandler}
+          />
+        </div>
+        <br></br>
+        <div>
+          <input type="file" onChange={onImageChange} accept="image/*" ></input>
+        </div>
+        <div>
+          {
+            cakeImgSrc && (<img style={{ width: '200px', marginTop: '16px'}} src={cakeImgSrc} alt="아무거나" />)
+          }
+        </div>
+        <br></br>
+        <div>
+          <TextField
+            select
+            label="케이크 종류"
+            id="product_category"
+            name="product_category"
+            value={kind}
+            onChange={optionChangeHandler}
+            variant="outlined"
+            size="small"
+          >
+            {kindOfCake.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
+        <div>
+          <TextField 
+            label="가격"
+            id="product_price"
+            name="product_price"
+            value={cakePrice}
+            onChange={priceChangeHandler}
+          />
+        </div>
+        <div>
+          <TextField
+            label="상세설명"
+            multiline
+            rows={10}
+            id="product_text"
+            name="product_text"
+            value={cakeText}
+            onChange={textChangeHandler}
+            variant="outlined"
+          />
+        </div>
+        <div style={{marginLeft:'35px'}}>
+          <Button type="submit" variant="outlined" color="primary">
+            상품 수정
+          </Button>
+          <Button variant="outlined" color="secondary">
+            취소
+          </Button>
+        </div>
       </div>
-      <br></br>
-      <div>
-        <input type="file"></input>
-      </div>
-      <br></br>
-      <div>
-        <TextField
-          select
-          label="케이크 종류"
-          value={kind}
-          onChange={handleChange}
-          variant="outlined"
-          size="small"
-        >
-          {kindOfCake.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-      </div>
-      <div>
-        <TextField 
-          id="standard-basic" 
-          label="가격"/>
-      </div>
-      <div>
-        <TextField
-          id="outlined-multiline-static"
-          label="상세설명"
-          multiline
-          rows={4}
-          defaultValue="사이즈 : 2호 (지름18cm)
-          유통기한 : 제조일로부터2일(냉장보관필수)
-          구성 : 바닐라케이크
-          제조&판매원 :	케익팩토리"
-          variant="outlined"
-        />
-      </div>
-      <div style={{marginLeft:'35px'}}>
-        <Button variant="outlined" color="primary">
-          상품 등록
-        </Button>
-        <Button variant="outlined" color="secondary">
-          취소
-        </Button>
-      </div>
-
-
-
-    </div>
+    </form>
   );
 }
 
-export default ProductModifyPage;
+export default ProductOfferPage;

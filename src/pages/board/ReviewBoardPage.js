@@ -2,13 +2,13 @@ import React from 'react';
 //import { makeStyles } from '@material-ui/core';
 
 //import Rating from "@material-ui/lab/Rating";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
+//import StarBorderIcon from "@material-ui/icons/StarBorder";
 import Typography from "@material-ui/core/Typography";
 
 import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
+// import Card from "@material-ui/core/Card";
+// import CardContent from "@material-ui/core/CardContent";
+// import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';

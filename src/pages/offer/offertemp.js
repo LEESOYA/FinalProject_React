@@ -41,7 +41,7 @@ function ProductOfferPage(props){
   const [cakeName, setCakeName] = useState(""); 
   const [cakePrice, setCakePrice] = useState(0);
   const [cakeText, setCakeText] = useState("");
-  const [kind, setKind] = useState("");
+  const [kind, setKind] = useState("bread");
   const [cakeImgSrc, setCakeImgSrc] = useState('');
   const [cakeImg, setCakeImg] = useState(null);
 
@@ -83,62 +83,23 @@ function ProductOfferPage(props){
     e.preventDefault();
     const imgUploadUrl = "http://localhost:9003/acorn/product/productFile";
     const productAddUrl = "http://localhost:9003/acorn/product/add";
-   
+
     const formData = new FormData();
     formData.append('uploadFile', cakeImg);
-
-    axios(imgUploadUrl, {
-      method: 'post',
-      data: formData,
-   })
-
-    axios(productAddUrl, {
-      method: 'post', 
-      data: {product_name:cakeName, 
-      product_text: cakeText,
-      product_price: cakePrice,
-      product_category: kind}
-    })
-
-   axios.all([imgUploadUrl(formData),
-    productAddUrl(cakeName, cakeText, cakePrice, kind)])
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
-
-  //   axios(productAddUrl, {
-  //     method: 'post', 
-  //     data: {product_name:cakeName, 
-  //     product_text: cakeText,
-  //     product_price: cakePrice,
-  //     product_category: kind}
-  //   })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
-
-  //   const formData = new FormData();
-  //    formData.append('uploadFile', cakeImg);
 
     // axios(imgUploadUrl, {
     //   method: 'post',
     //   data: formData,
     // })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    
+  
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -146,9 +107,8 @@ function ProductOfferPage(props){
         <div>상품등록페이지</div>
         <div>
           <TextField 
+            id="standard-basic" 
             label="상품명"
-            name="product_name"
-            tabIndex="product_name"
             value={cakeName}
             onChange={nameChangeHandler}
           />
@@ -167,8 +127,6 @@ function ProductOfferPage(props){
           <TextField
             select
             label="케이크 종류"
-            id="product_category"
-            name="product_category"
             value={kind}
             onChange={optionChangeHandler}
             variant="outlined"
@@ -183,20 +141,18 @@ function ProductOfferPage(props){
         </div>
         <div>
           <TextField 
+            id="standard-basic" 
             label="가격"
-            id="product_price"
-            name="product_price"
             value={cakePrice}
             onChange={priceChangeHandler}
           />
         </div>
         <div>
           <TextField
+            id="outlined-textarea"
             label="상세설명"
             multiline
             rows={10}
-            id="product_text"
-            name="product_text"
             value={cakeText}
             onChange={textChangeHandler}
             variant="outlined"
